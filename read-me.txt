@@ -1,0 +1,51 @@
+Story 1
+There should be a graphical interface for the calculator, including a body, a
+place for buttons and a screen.
+Story 2
+I want to have clickable buttons that represent the numbers 0-9 which will
+make that number appear on the screen next to the last clicked number.
+Story 3
+I want to have clickable buttons representing +, -, x and / which will appear on
+the screen when clicked to form expressions together with the numbers.
+E.g. Clicking “3”, “+” and “4” should write that combination as “3+4” somewhere
+on the screen.
+Story 4
+There should be a button “=” that when pressed will evaluate the current
+expression and show the answer somewhere on the screen. Non-correct
+expressions (such as 2++3) should show the message “ERROR”.
+Story 5
+I want to have a clickable button “.” representing a decimal point. Clicking on it
+should make the currently input number into a decimal number. If no number
+has been clicked previously, the number 0 should be automatically used as the
+unit for the decimal number (e.g. 0.4)
+Story 6
+There should be an undo button that removes the last character that was
+clicked on.
+Story 7
+There should be a “Clear”-button which removes all the characters that has
+been input and resets the calculator state.
+Story 8
+There should be two buttons representing parenthesis “(“ and “)” that will add
+the characters to the expression when clicked. This should make parts within a
+parenthesis be considered by themselves, thus changing the order of
+operations.
+Story 9
+It should be possible to use the keyboard instead of clicking on the buttons
+with the mouse. E.g. pressing 0-9 or an operator such as “*”
+Story 10
+There should be a button ‘^’ for exponentiation, where the number written
+before should be the base and the number after should be the exponent. (E.g. =
+4^10 where 4 is base and 10 is exponent)
+Story 11
+There should be a button for calculating the square root a number.
+Story 12
+There should be 6 buttons named “A, B, C, D, E” and “Store” where the user can
+store the latest expression result in one of the five letters.
+To store, the user presses “Store” followed by a letter.
+To use a stored number, the user simply presses that letter.
+Story 13
+There should be a “Timer”-button, which will start a timer that counts seconds
+and minutes up from 00:00. When the user clicks the button again the timer
+should stop.
+Story 14
+It should be possible to see the last 50 previously evaluated expressions.
