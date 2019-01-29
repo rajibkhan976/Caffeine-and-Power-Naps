@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Colculator</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <h1>Calculator</h1>
+  <div class="container">
+
+    <div class="history">
+      <button type="button" class="topbtn" name="button"><i class="material-icons">history</i></button>
+      <button type="button" class="topbtn" name="button"><i class="material-icons">timer</i></button>
+      <!--input type="button" class="topbtn" value="h" onclick="" style="width:30px;height:30px;"-->
+      <!--input type="button" class="topbtn" value="t" style="width:30px;height:30px;"-->
+    </div>
+    <div class="screen">
+      <input type="text" id="input" name="input" value="" readonly placeholder="0">
+      <input type="text" id="result" name="result" value="" readonly>
+      <input type="text" id="timmer" name="timmer" value="" readonly placeholder="00.00">
+    </div>
+    <div class="buttons">
+      <table>
+        <tr>
+          <td>
+            <div class="row1">
+              <input type="button" value="&radic;&macr;" onclick="">
+              <input type="button" value="(">
+              <input type="button" value=")">
+              <input type="button" value="^">
+            </div>
+            <div class="row2">
+              <input class="calc-number" type="button" value="7" onclick="">
+              <input class="calc-number" type="button" value="8">
+              <input class="calc-number" type="button" value="9">
+              <input type="button" value="÷">
+
+            </div>
+            <div class="row3">
+              <input class="calc-number" type="button" value="4" onclick="">
+              <input class="calc-number" type="button" value="5">
+              <input class="calc-number" type="button" value="6">
+              <input type="button" value="×">
+            </div>
+            <div class="row4">
+              <input class="calc-number" type="button" value="1" onclick="">
+              <input class="calc-number" type="button" value="2">
+              <input class="calc-number" type="button" value="3">
+              <input type="button" value="-">
+            </div>
+            <div class="row5">
+              <input type="button" value=" &plusmn;" onclick="">
+              <input class="calc-number" type="button" value="0">
+              <input class="calc-number" type="button" value=".">
+              <input type="button" value="-">
+            </div>
+            <div class="row6">
+              <input type="button" style="background-color:#DDFD06;color:#0B147A;" value="A" onclick="">
+              <input type="button" style="background-color:#DDFD06;color:#0B147A;" value="B">
+              <input type="button" style="background-color:#DDFD06;color:#0B147A;" value="C">
+              <input type="button" style="background-color:#DDFD06;color:#0B147A;" value="D">
+            </div>
+          </td>
+          <td>
+            <div class="">
+              <input type="button" value="&larr;" style="background-color: #8C0775;"><br>
+              <input type="button" value="Cl" style="background-color: #FD0667;  height:100px"><br>
+              <input type="button" value="=" style="background-color:#2BE703;  height:100px"><br>
+              <input type="button" value="Stor" style="background-color:#DDFD06;color:#0B147A;">
+            </div>
+          </td>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="calculator.js"></script>
+</body>
+
+</html>
