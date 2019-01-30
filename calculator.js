@@ -1,5 +1,6 @@
 $(document).ready(function(){
   var numberInput = "";
+
   $('.calc-number').click(function () {
     numberInput += $(this).val();
     if (numberInput == '0') {
@@ -13,4 +14,15 @@ $(document).ready(function(){
       }
     }
   });
+
+  //Decimal function (story 5)
+  $('.decimal').click(function() {
+    numberInput += $(this).val();
+    if (numberInput == '.' ) {
+      numberInput = "0."
+    } else {
+      $('#input').val(numberInput);
+    };
+  });
+
 });
