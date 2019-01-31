@@ -21,4 +21,7 @@ $(document).ready(function(){
       }
     }
   });
+  $('#clear').click(function () {
+    alert("Hej");
+  });
 });
