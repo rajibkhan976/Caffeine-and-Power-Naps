@@ -2,7 +2,6 @@ $(document).ready(function() {
   var screenInput = "";
   var operatorInput = "";
   var total = "";
-  var isNumber = false;
   
   //story_2: display numbers (0-9) and controll capacity of the calculator
   $('.calc-number').click(function() {
