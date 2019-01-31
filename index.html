@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <title>Calculator</title>
+  <title>Colculator</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
@@ -36,25 +37,25 @@
               <input class="calc-number" type="button" value="7" onclick="">
               <input class="calc-number" type="button" value="8">
               <input class="calc-number" type="button" value="9">
-              <input type="button" value="÷">
+              <input class="calc-operator" type="button" value="/">
             </div>
             <div class="row3">
               <input class="calc-number" type="button" value="4" onclick="">
               <input class="calc-number" type="button" value="5">
               <input class="calc-number" type="button" value="6">
-              <input type="button" value="×">
+              <input class="calc-operator" type="button" value="*">
             </div>
             <div class="row4">
               <input class="calc-number" type="button" value="1" onclick="">
               <input class="calc-number" type="button" value="2">
               <input class="calc-number" type="button" value="3">
-              <input type="button" value="-">
+              <input class="calc-operator" type="button" value="-">
             </div>
             <div class="row5">
               <input type="button" value=" &plusmn;" onclick="">
               <input class="calc-number" type="button" value="0">
               <input class="decimal" type="button" value=".">
-              <input type="button" value="+">
+              <input class="calc-operator" type="button" value="+">
             </div>
             <div class="row6">
               <input type="button" style="background-color:#DDFD06;color:#0B147A;" value="A" onclick="">
@@ -67,7 +68,7 @@
             <div class="">
               <input type="button" value="&larr;" style="background-color: #8C0775;"><br>
               <input type="button" value="Cl" style="background-color: #FD0667;  height:100px"><br>
-              <input type="button" value="=" style="background-color:#2BE703;  height:100px"><br>
+              <input type="button" class="total" value="=" style="background-color:#2BE703;  height:100px"><br>
               <input type="button" value="Stor" style="background-color:#DDFD06;color:#0B147A;">
             </div>
           </td>
@@ -75,7 +76,8 @@
       </table>
     </div>
   </div>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="calculator.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="calculator.js"></script>
 </body>
+
 </html>
