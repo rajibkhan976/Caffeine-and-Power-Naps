@@ -1,14 +1,14 @@
 $(document).ready(function(){
-  var numberInput = "";
+  var screenInput = "";
 
   $('.calc-number').click(function () {
-    numberInput += $(this).val();
-    if (numberInput == '0') {
-      numberInput = "";
+    screenInput += $(this).val();
+    if (screenInput == '0') {
+      screenInput = "";
       $('#input').val();
     } else {
-      if (numberInput.length < 11) {
-        $('#input').val(numberInput);
+      if (screenInput.length < 11) {
+        $('#input').val(screenInput);
       } else {
         alert("Sorry, the calculator can only handle 10 digits or less.");
       }
@@ -17,12 +17,12 @@ $(document).ready(function(){
 
   //Decimal function (story 5)
   $('.decimal').click(function() {
-    numberInput += $(this).val();
-    if (numberInput == '.' ) {
-      numberInput = "0."
+    screenInput += $(this).val();
+    if (screenInput == '.' ) {
+      screenInput = "0."
     } else {
-      $('#input').val(numberInput);
-    };
+      $('#input').val(screenInput);
+    }
   });
 
 });
