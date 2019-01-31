@@ -2,7 +2,7 @@ $(document).ready(function() {
   var screenInput = "";
   var operatorInput = "";
   var total = "";
-
+  
   //story_2: display numbers (0-9) and controll capacity of the calculator
   $('.calc-number').click(function() {
     screenInput += $(this).val();
@@ -17,6 +17,7 @@ $(document).ready(function() {
       }
     }
   });
+  
   //story_3: display the operator(+,-,×,÷)
   $('.calc-operator').click(function() {
     operatorInput = $(this).val();
@@ -25,7 +26,8 @@ $(document).ready(function() {
       $('#input').val(screenInput);
     }
   });
-  //story 4
+
+  //story 4: calculating numbers and showing error message
   $('.total').click(function() {
     if (operatorInput != "" && screenInput != "" && !screenInput.includes("**" || "")) {
       try {
@@ -38,7 +40,8 @@ $(document).ready(function() {
     } else {
       $('#result').val("ERROR")
     }
-  })
+  });
+  
   //story_6: button that removes the last character that was clicked on.
   $('.calc-backspace').click(function() {
     var screenInput_length = screenInput.length - 1;
@@ -46,4 +49,13 @@ $(document).ready(function() {
     screenInput = newscreenInput;
     $('#input').val(screenInput);
   });
+  
+  //story_7 clear the input and output
+  $('#clear').click(function () {
+    screenInput = "";
+    $('#input').val(screenInput);
+    total = "";
+    $('#result').val(total);
+  });
 });
+
