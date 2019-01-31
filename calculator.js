@@ -2,7 +2,9 @@ $(document).ready(function() {
   var screenInput = "";
   var operatorInput = "";
   var total = "";
-  
+  var exponentCharOne = "";
+  var exponentCharTwo = "";
+
   //story_2: display numbers (0-9) and controll capacity of the calculator
   $('.calc-number').click(function() {
     screenInput += $(this).val();
@@ -17,7 +19,7 @@ $(document).ready(function() {
       }
     }
   });
-  
+
   //story_3: display the operator(+,-,×,÷)
   $('.calc-operator').click(function() {
     operatorInput = $(this).val();
@@ -33,15 +35,28 @@ $(document).ready(function() {
       try {
         total = eval(screenInput);
         console.log(total);
-        $('#result').val(total)
+        $('#result').val(total);
       } catch (error) {
-        $('#result').val("ERROR")
+        $('#result').val("ERROR");
+      }
+      //story 10: exponent calculation
+      if (screenInput.includes("^")) {
+        exponentCharOne = screenInput.charAt(0);
+        console.log(exponentCharOne);
+        exponentCharTwo = screenInput.charAt(2);
+        console.log(exponentCharTwo);
+        var exponentResult = exponentCharOne;
+        for (var c = 1; c < parseInt(exponentCharTwo); c++) {
+          var exponentCal = exponentResult * exponentCharOne;
+          exponentResult = exponentCal;
+        }
+        $('#result').val(exponentResult);
       }
     } else {
-      $('#result').val("ERROR")
+      $('#result').val("ERROR");
     }
   });
-  
+
   //story_6: button that removes the last character that was clicked on.
   $('.calc-backspace').click(function() {
     var screenInput_length = screenInput.length - 1;
@@ -49,7 +64,7 @@ $(document).ready(function() {
     screenInput = newscreenInput;
     $('#input').val(screenInput);
   });
-  
+
   //story_7 clear the input and output
   $('#clear').click(function () {
     screenInput = "";
@@ -57,5 +72,12 @@ $(document).ready(function() {
     total = "";
     $('#result').val(total);
   });
+  //story_10: exponent operator
+  $('#exponent').click(function () {
+    if (screenInput != "" && !screenInput.includes("^")) {
+      var exponentChar = $(this).val();
+      screenInput += exponentChar;
+      $('#input').val(screenInput);
+    }
+  });
 });
-
