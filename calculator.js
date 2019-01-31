@@ -26,5 +26,12 @@ $(document).ready(function() {
     }
   });
 
+  //story_6: button that removes the last character that was clicked on.
+  $('.calc-backspace').click(function() {
+    var screenInput_length = screenInput.length - 1;
+    var newscreenInput = screenInput.slice(0, screenInput_length);
+    screenInput = newscreenInput;
+    $('#input').val(screenInput);
+  });
 
 });
