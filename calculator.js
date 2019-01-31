@@ -1,6 +1,7 @@
 $(document).ready(function() {
   var screenInput = "";
   var operatorInput = "";
+  var total = "";
 
   //story_2: display numbers (0-9) and controll capacity of the calculator
   $('.calc-number').click(function() {
@@ -20,11 +21,23 @@ $(document).ready(function() {
   //story_3: display the operator(+,-,×,÷)
   $('.calc-operator').click(function() {
     operatorInput = $(this).val();
-    if (operatorInput != "" && screenInput != "") {
+    if (operatorInput != "" && screenInput != "" && screenInput.charAt(screenInput.length -1) != "/") {
       screenInput += operatorInput;
       $('#input').val(screenInput);
     }
   });
-
+  //story 4
+  $('.total').click(function(){
+    if(operatorInput != "" && screenInput != "" && !screenInput.includes("**"||"")) {
+      try {total = eval(screenInput);
+      console.log(total);
+      $('#result').val(total)}
+      catch(error) {
+        $('#result').val("ERROR")
+      }
+    } else {
+      $('#result').val("ERROR")
+    }
+  })
 
 });
