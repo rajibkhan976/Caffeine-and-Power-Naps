@@ -17,27 +17,33 @@ $(document).ready(function() {
       }
     }
   });
-
   //story_3: display the operator(+,-,×,÷)
   $('.calc-operator').click(function() {
     operatorInput = $(this).val();
-    if (operatorInput != "" && screenInput != "" && screenInput.charAt(screenInput.length -1) != "/") {
+    if (operatorInput != "" && screenInput != "" && screenInput.charAt(screenInput.length - 1) != "/") {
       screenInput += operatorInput;
       $('#input').val(screenInput);
     }
   });
   //story 4
-  $('.total').click(function(){
-    if(operatorInput != "" && screenInput != "" && !screenInput.includes("**"||"")) {
-      try {total = eval(screenInput);
-      console.log(total);
-      $('#result').val(total)}
-      catch(error) {
+  $('.total').click(function() {
+    if (operatorInput != "" && screenInput != "" && !screenInput.includes("**" || "")) {
+      try {
+        total = eval(screenInput);
+        console.log(total);
+        $('#result').val(total)
+      } catch (error) {
         $('#result').val("ERROR")
       }
     } else {
       $('#result').val("ERROR")
     }
   })
-
+  //story_6: button that removes the last character that was clicked on.
+  $('.calc-backspace').click(function() {
+    var screenInput_length = screenInput.length - 1;
+    var newscreenInput = screenInput.slice(0, screenInput_length);
+    screenInput = newscreenInput;
+    $('#input').val(screenInput);
+  });
 });
