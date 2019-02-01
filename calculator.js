@@ -23,7 +23,7 @@ $(document).ready(function() {
   //story_3: display the operator(+,-,×,÷)
   $('.calc-operator').click(function() {
     operatorInput = $(this).val();
-    if (operatorInput != "" && screenInput != "" && screenInput.charAt(screenInput.length - 1) != "/") {
+    if (operatorInput != "" && screenInput != "" && screenInput.charAt(screenInput.length - 1) != "/" && screenInput.charAt(screenInput.length - 1) != "(") {
       screenInput += operatorInput;
       $('#input').val(screenInput);
     }
@@ -102,6 +102,18 @@ $(document).ready(function() {
     total = "";
     $('#result').val(total);
   });
+  //story_8
+  $('.parenthesis-open').click(function() {
+    screenInput += $(this).val();
+    $('#input').val(screenInput);
+  });
+  $('.parenthesis-close').click(function() {
+    if (screenInput != "" && screenInput.charAt(screenInput.length - 1) != "("&& screenInput.charAt(screenInput.length - 1) != "*" && screenInput.charAt(screenInput.length - 1) != "-"&& screenInput.charAt(screenInput.length - 1) != "+"&& screenInput.charAt(screenInput.length - 1) != "/" && screenInput.charAt(screenInput.length - 1) != "^"){
+      screenInput += $(this).val();
+      $('#input').val(screenInput);
+    }
+  });
+
   //story_10: exponent operator
   $('#exponent').click(function () {
     if (screenInput != "" && !screenInput.includes("^")) {
