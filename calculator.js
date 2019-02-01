@@ -31,7 +31,7 @@ $(document).ready(function() {
 
   //story 4: calculating numbers and showing error message
   $('.total').click(function() {
-    if (operatorInput != "" && screenInput != "" && !screenInput.includes("**" || "")) {
+    if (operatorInput != "" && screenInput != "" && !screenInput.includes("**")) {
       try {
         total = eval(screenInput);
         console.log(total);
@@ -39,21 +39,21 @@ $(document).ready(function() {
       } catch (error) {
         $('#result').val("ERROR");
       }
-      //story 10: exponent calculation
-      if (screenInput.includes("^")) {
-        exponentCharOne = screenInput.charAt(0);
-        console.log(exponentCharOne);
-        exponentCharTwo = screenInput.charAt(2);
-        console.log(exponentCharTwo);
-        var exponentResult = exponentCharOne;
-        for (var c = 1; c < parseInt(exponentCharTwo); c++) {
-          var exponentCal = exponentResult * exponentCharOne;
-          exponentResult = exponentCal;
-        }
-        $('#result').val(exponentResult);
-      }
     } else {
       $('#result').val("ERROR");
+    }
+    //story 10: exponent calculation
+    if (screenInput.includes("^")) {
+      exponentCharOne = screenInput.charAt(0);
+      console.log(exponentCharOne);
+      exponentCharTwo = screenInput.charAt(2);
+      console.log(exponentCharTwo);
+      var exponentResult = exponentCharOne;
+      for (var c = 1; c < parseInt(exponentCharTwo); c++) {
+        var exponentCal = exponentResult * exponentCharOne;
+        exponentResult = exponentCal;
+      }
+      $('#result').val(exponentResult);
     }
   });
 
@@ -108,6 +108,7 @@ $(document).ready(function() {
       var exponentChar = $(this).val();
       screenInput += exponentChar;
       $('#input').val(screenInput);
+      console.log(screenInput);
     }
   });
 });
