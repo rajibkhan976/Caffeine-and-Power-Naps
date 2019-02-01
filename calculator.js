@@ -81,6 +81,8 @@ $(document).ready(function() {
       case "+":
       case "-":
       case "/":
+      case "(":
+      case ")":
         return false;
       default:
         return true;
@@ -102,6 +104,7 @@ $(document).ready(function() {
     total = "";
     $('#result').val(total);
   });
+
   //story_8
   $('.parenthesis-open').click(function() {
     screenInput += $(this).val();
