@@ -23,7 +23,7 @@ $(document).ready(function() {
   //story_3: display the operator(+,-,×,÷)
   $('.calc-operator').click(function() {
     operatorInput = $(this).val();
-    if (operatorInput != "" && screenInput != "" && screenInput.charAt(screenInput.length - 1) != "/" && screenInput.charAt(screenInput.length - 1) != "(") {
+    if (operatorInput != "" && screenInput != "" && screenInput.charAt(screenInput.length - 1) != "/") {
       screenInput += operatorInput;
       $('#input').val(screenInput);
     }
@@ -70,20 +70,17 @@ $(document).ready(function() {
         screenInput += decimalNumTwo;
       } else {
         screenInput += operatorInput;
-      }
-      $('#input').val(screenInput);
+      } $('#input').val(screenInput);
     };
   });
 
   //Function to check if the input is a number or not (need it for story5)
-  function checkIfNumber(input) {
-    switch (input) {
+  function checkIfNumber (input) {
+    switch(input) {
       case "*":
       case "+":
       case "-":
       case "/":
-      case "(":
-      case ")":
         return false;
       default:
         return true;
@@ -99,80 +96,18 @@ $(document).ready(function() {
   });
 
   //story_7 clear the input and output
-  $('#clear').click(function() {
+  $('#clear').click(function () {
     screenInput = "";
     $('#input').val(screenInput);
     total = "";
     $('#result').val(total);
   });
-
-  //story_8
-  $('.parenthesis-open').click(function() {
-    screenInput += $(this).val();
-    $('#input').val(screenInput);
-  });
-  $('.parenthesis-close').click(function() {
-    if (screenInput != "" && screenInput.charAt(screenInput.length - 1) != "(" && screenInput.charAt(screenInput.length - 1) != "*" && screenInput.charAt(screenInput.length - 1) != "-" && screenInput.charAt(screenInput.length - 1) != "+" && screenInput.charAt(screenInput.length - 1) != "/" && screenInput.charAt(screenInput.length - 1) != "^") {
-      screenInput += $(this).val();
-      $('#input').val(screenInput);
-    }
-  });
-
   //story_10: exponent operator
-  $('#exponent').click(function() {
+  $('#exponent').click(function () {
     if (screenInput != "" && !screenInput.includes("^")) {
       var exponentChar = $(this).val();
       screenInput += exponentChar;
       $('#input').val(screenInput);
     }
-  });
-  //story_9: use the keyboard instead of clicking on the buttons with the mouse.
-  var operatorArray = ["+", "-", "*", "/"];
-  var operatorkeybordArray = [187, 189, 191, 55];
-  var keyboardInput = {};
-
-  for (var i = 0; i < 10; i++) {
-    keyboardInput['button' + i] = i;
-    keyboardInput['event' + i] = i + 48;
-  }
-
-  for (var i = 10; i < 13; i++) {
-    keyboardInput['button' + i] = operatorArray[i - 10];
-    keyboardInput['event' + i] = operatorkeybordArray[i - 10];
-  }
-  console.log(keyboardInput);
-
-
-  function Keyboard(event) {
-    var char = event.which || event.keyCode;
-    console.log("char=" + char);
-    for (var i = 0; i < 14; i++) {
-
-      //console.log(keyboardInput['event' + i]);
-      if (char == keyboardInput['event' + i]) {
-        if (event.shiftKey && char == 55) {
-          operatorInput = "/";
-          screenInput += operatorInput;
-          //  alert("The SHIFT key was pressed!");
-        } else {
-          screenInput += keyboardInput['button' + i];
-        }
-        /*if (!event.shiftKey && char == 55) {
-          screenInput = "7";
-          //  alert("The SHIFT key was pressed!");
-        }*/
-        switch (char) {
-          case 187:
-          case 189:
-          case 191:
-            operatorInput = keyboardInput['button' + i];
-            break;
-        }
-        $('#input').val(screenInput);
-      }
-    }
-  }
-  $("#input").keydown(function() {
-    Keyboard(event);
   });
 });
