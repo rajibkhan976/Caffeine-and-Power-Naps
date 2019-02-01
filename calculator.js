@@ -87,5 +87,5 @@ $(document).ready(function() {
     total = "";
     $('#result').val(total);
   });
-});
 
+  
