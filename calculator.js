@@ -112,7 +112,7 @@ $(document).ready(function() {
     $('#input').val(screenInput);
   });
   $('.parenthesis-close').click(function() {
-    if (screenInput != "" && screenInput.charAt(screenInput.length - 1) != "("&& screenInput.charAt(screenInput.length - 1) != "*" && screenInput.charAt(screenInput.length - 1) != "-"&& screenInput.charAt(screenInput.length - 1) != "+"&& screenInput.charAt(screenInput.length - 1) != "/" && screenInput.charAt(screenInput.length - 1) != "^"){
+    if (screenInput != "" && screenInput.charAt(screenInput.length - 1) != "(" && screenInput.charAt(screenInput.length - 1) != "*" && screenInput.charAt(screenInput.length - 1) != "-" && screenInput.charAt(screenInput.length - 1) != "+" && screenInput.charAt(screenInput.length - 1) != "/" && screenInput.charAt(screenInput.length - 1) != "^") {
       screenInput += $(this).val();
       $('#input').val(screenInput);
     }
