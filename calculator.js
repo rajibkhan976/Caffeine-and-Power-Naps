@@ -39,21 +39,21 @@ $(document).ready(function() {
       } catch (error) {
         $('#result').val("ERROR");
       }
-      //story 10: exponent calculation
-      if (screenInput.includes("^")) {
-        exponentCharOne = screenInput.charAt(0);
-        console.log(exponentCharOne);
-        exponentCharTwo = screenInput.charAt(2);
-        console.log(exponentCharTwo);
-        var exponentResult = exponentCharOne;
-        for (var c = 1; c < parseInt(exponentCharTwo); c++) {
-          var exponentCal = exponentResult * exponentCharOne;
-          exponentResult = exponentCal;
-        }
-        $('#result').val(exponentResult);
-      }
     } else {
       $('#result').val("ERROR");
+    }
+    //story 10: exponent calculation
+    if (screenInput.includes("^")) {
+      exponentCharOne = screenInput.charAt(0);
+      console.log(exponentCharOne);
+      exponentCharTwo = screenInput.charAt(2);
+      console.log(exponentCharTwo);
+      var exponentResult = exponentCharOne;
+      for (var c = 1; c < parseInt(exponentCharTwo); c++) {
+        var exponentCal = exponentResult * exponentCharOne;
+        exponentResult = exponentCal;
+      }
+      $('#result').val(exponentResult);
     }
   });
 
