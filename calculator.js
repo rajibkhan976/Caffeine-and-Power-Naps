@@ -16,8 +16,8 @@ $(document).ready(function() {
     } else {
       if (screenInput.length < 15) {
         $('#input').val(screenInput);
-        expresson = screenInput;
-        console.log(expresson);
+        //expresson = screenInput;
+        //console.log(expresson);
       } else {
         alert("Sorry, the calculator can only handle 14 digits or less.");
       }
