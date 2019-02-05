@@ -30,7 +30,7 @@ $(document).ready(function() {
   });
 
   //story 4: calculating numbers and showing error message
-  $('.total').click(function() {
+  function calculateTotal() {
     if (operatorInput != "" && screenInput != "" && !screenInput.includes("**" || "")) {
       try {
         total = eval(screenInput);
@@ -50,22 +50,12 @@ $(document).ready(function() {
         exponentCharTwo = screenInput.charAt(2);
         console.log(exponentCharTwo);
       } else {
-          var exponentIndex = screenInput.indexOf("^");
-          var exponentCharOneVal = screenInput.substring(0, exponentIndex);
-          if (exponentCharOneVal.includes("**") || exponentCharOneVal.includes("++") || exponentCharOneVal.includes("--")) {
-            $('#result').val("ERROR");
-            return;
-          }
-          exponentCharOne = eval(exponentCharOneVal);
-          console.log(exponentCharOne);
-          var exponentSplit = screenInput.split("^");
-          var exponentCharTwoVal = exponentSplit[1];
-          if (exponentCharTwoVal.includes("**") || exponentCharTwoVal.includes("++") || exponentCharTwoVal.includes("--")) {
-            $('#result').val("ERROR");
-            return;
-          }
-          exponentCharTwo = eval(exponentCharTwoVal);
-          console.log(exponentCharTwo);
+        var exponentIndex = screenInput.indexOf("^");
+        exponentCharOne = eval(screenInput.substring(0, exponentIndex));
+        console.log(exponentCharOne);
+        var exponentSplit = screenInput.split("^");
+        exponentCharTwo = eval(exponentSplit[1]);
+        console.log(exponentCharTwo);
       }
       var exponentResult = exponentCharOne;
       for (var c = 1; c < parseInt(exponentCharTwo); c++) {
@@ -74,11 +64,14 @@ $(document).ready(function() {
       }
       $('#result').val(exponentResult);
     }
-  });
+  }
 
+  $('.total').click(function() {
+    calculateTotal();
+  });
   //story 5: decimal button is clickable, also automatically adds 0 before ".", if no other number has been clicked.
-  $('.decimal').click(function() {
-    operatorInput = $(this).val();
+
+  function calculateDecimal() {
     var lastChar = screenInput.charAt(screenInput.length - 1);
     if (screenInput == "" && operatorInput == ".") {
       screenInput = "0.";
@@ -92,6 +85,11 @@ $(document).ready(function() {
       }
       $('#input').val(screenInput);
     };
+  }
+
+  $('.decimal').click(function() {
+    operatorInput = $(this).val();
+    calculateDecimal();
   });
 
   //Function to check if the input is a number or not (need it for story5)
@@ -110,11 +108,14 @@ $(document).ready(function() {
   };
 
   //story_6: button that removes the last character that was clicked on.
-  $('.calc-backspace').click(function() {
+  function calculateBackspace() {
     var screenInput_length = screenInput.length - 1;
     var newscreenInput = screenInput.slice(0, screenInput_length);
     screenInput = newscreenInput;
     $('#input').val(screenInput);
+  }
+  $('.calc-backspace').click(function() {
+    calculateBackspace();
   });
 
   //story_7 clear the input and output
@@ -146,8 +147,8 @@ $(document).ready(function() {
     }
   });
   //story_9: use the keyboard instead of clicking on the buttons with the mouse.
-  var operatorArray = ["+", "-", "*", "/"];
-  var operatorkeybordArray = [187, 189, 191, 55];
+  var operatorArray = ["+", "-", "*", ".", " ", "=", "/"];
+  var operatorkeybordArray = [187, 189, 191, 190, 8, 13, 55];
   var keyboardInput = {};
 
   for (var i = 0; i < 10; i++) {
@@ -155,7 +156,7 @@ $(document).ready(function() {
     keyboardInput['event' + i] = i + 48;
   }
 
-  for (var i = 10; i < 13; i++) {
+  for (var i = 10; i < 16; i++) {
     keyboardInput['button' + i] = operatorArray[i - 10];
     keyboardInput['event' + i] = operatorkeybordArray[i - 10];
   }
@@ -165,7 +166,7 @@ $(document).ready(function() {
   function Keyboard(event) {
     var char = event.which || event.keyCode;
     console.log("char=" + char);
-    for (var i = 0; i < 14; i++) {
+    for (var i = 0; i < 17; i++) {
 
       //console.log(keyboardInput['event' + i]);
       if (char == keyboardInput['event' + i]) {
@@ -185,6 +186,18 @@ $(document).ready(function() {
           case 189:
           case 191:
             operatorInput = keyboardInput['button' + i];
+            break;
+          case 190:
+            operatorInput = keyboardInput['button' + i];
+            calculateDecimal()
+            break;
+          case 8:
+            screenInput = screenInput.slice(0, screenInput.length - 1);
+            calculateBackspace();
+            break;
+          case 13:
+            screenInput = screenInput.slice(0, screenInput.length - 1);
+            calculateTotal();
             break;
         }
         $('#input').val(screenInput);
