@@ -31,7 +31,20 @@ $(document).ready(function() {
 
   //story 4: calculating numbers and showing error message
   function calculateTotal() {
-    if (operatorInput != "" && screenInput != "" && !screenInput.includes("**" || "")) {
+    if (screenInput.includes("√")){
+      if (!screenInput.includes("(")) {
+        screenInput = screenInput.replace("√", "sqrt(")
+        screenInput += ")"
+        total = math.eval(screenInput)
+        console.log(screenInput);
+        console.log(total);
+        $('#result').val(total);
+      } else {
+        screenInput = screenInput.replace("√", "sqrt")
+        total = math.eval(screenInput)
+        $('#result').val(total);
+      }
+    } else if (operatorInput != "" && screenInput != "" && !screenInput.includes("**")) {
       try {
         total = eval(screenInput);
         console.log(total);
@@ -216,5 +229,10 @@ $(document).ready(function() {
   }
   $("#input").keydown(function() {
     Keyboard(event);
+  });
+  //stroy 11 also line 40-51
+  $('.sqroot').click(function() {
+    screenInput += $(this).val();
+    $('#input').val(screenInput);
   });
 });
