@@ -235,7 +235,6 @@ $(document).ready(function() {
   $("#input").keydown(function() {
     Keyboard(event);
   });
-<<<<<<< HEAD
   //story_12: Storing expression result to A, B, C, D, E and use Store button
   $('.store').click(function () {
     console.log(expresson);
@@ -261,11 +260,10 @@ $(document).ready(function() {
       screenInput = "";
       $('#input').val(screenInput);
     });
-=======
+  });
   //stroy 11 also line 40-51
   $('.sqroot').click(function() {
     screenInput += $(this).val();
     $('#input').val(screenInput);
->>>>>>> 27e3458baea829a9ddff2565f20669866ee073b3
   });
 });
