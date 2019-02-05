@@ -50,12 +50,22 @@ $(document).ready(function() {
         exponentCharTwo = screenInput.charAt(2);
         console.log(exponentCharTwo);
       } else {
-        var exponentIndex = screenInput.indexOf("^");
-        exponentCharOne = eval(screenInput.substring(0, exponentIndex));
-        console.log(exponentCharOne);
-        var exponentSplit = screenInput.split("^");
-        exponentCharTwo = eval(exponentSplit[1]);
-        console.log(exponentCharTwo);
+          var exponentIndex = screenInput.indexOf("^");
+          var exponentCharOneVal = screenInput.substring(0, exponentIndex);
+          if (exponentCharOneVal.includes("**") || exponentCharOneVal.includes("++") || exponentCharOneVal.includes("--")) {
+            $('#result').val("ERROR");
+            return;
+          }
+          exponentCharOne = eval(exponentCharOneVal);
+          console.log(exponentCharOne);
+          var exponentSplit = screenInput.split("^");
+          var exponentCharTwoVal = exponentSplit[1];
+          if (exponentCharTwoVal.includes("**") || exponentCharTwoVal.includes("++") || exponentCharTwoVal.includes("--")) {
+            $('#result').val("ERROR");
+            return;
+          }
+          exponentCharTwo = eval(exponentCharTwoVal);
+          console.log(exponentCharTwo);
       }
       var exponentResult = exponentCharOne;
       for (var c = 1; c < parseInt(exponentCharTwo); c++) {
