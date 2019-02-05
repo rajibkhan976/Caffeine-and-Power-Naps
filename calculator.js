@@ -5,7 +5,7 @@ $(document).ready(function() {
   var exponentCharOne = "";
   var exponentCharTwo = "";
   var expresson = "";
-  var A = "", B = "", C = "", D = "", E = "";
+  var A = "", B = "", C = "", D = "", E = "", clickCounter = 0;
 
   //story_2: display numbers (0-9) and controll capacity of the calculator
   $('.calc-number').click(function() {
@@ -16,8 +16,6 @@ $(document).ready(function() {
     } else {
       if (screenInput.length < 15) {
         $('#input').val(screenInput);
-        expresson = screenInput;
-        console.log(expresson);
       } else {
         alert("Sorry, the calculator can only handle 14 digits or less.");
       }
@@ -159,7 +157,7 @@ $(document).ready(function() {
     $('#input').val(screenInput);
   });
   $('.parenthesis-close').click(function() {
-    if (screenInput != "" && screenInput.charAt(screenInput.length - 1) != "(" && screenInput.charAt(screenInput.length - 1) != "*" && screenInput.charAt(screenInput.length - 1) != "-" && screenInput.charAt(screenInput.length - 1) != "+" && screenInput.charAt(screenInput.length - 1) != "/" && screenInput.charAt(screenInput.length - 1) != "^") {
+    if (screenInput != "" && screenInput.charAt(screenInput.length - 1) != "(" && screenInput.charAt(screenInput.length - 1) != "*" && screenInput.charAt(screenInput.length - 1) != "-" && screenInput.charAt(screenInput.length - 1) != "+" && screenInput.charAt(screenInput.length - 1) != "/" && screenInput.charAt(screenInput.length - 1) != "^" && screenInput.includes("(")) {
       screenInput += $(this).val();
       expresson = screenInput;
       $('#input').val(screenInput);
@@ -235,33 +233,103 @@ $(document).ready(function() {
   $("#input").keydown(function() {
     Keyboard(event);
   });
-  
+
   //story_12: Storing expression result to A, B, C, D, E and use Store button
-  $('.store').click(function () {
-    console.log(expresson);
-    screenInput = $(this).val();
-    $('#input').val(screenInput);
-    $('#save'). click(function () {
-      if (screenInput == "A") {
-        A = expresson;
-        console.log(A);
-      } else if (screenInput == "B") {
-        B = expresson;
-        console.log(B);
-      } else if (screenInput == "C") {
-        C = expresson;
-        console.log(C);
-      } else if (screenInput == "D") {
-        D = expresson;
-        console.log(D);
-      } else {
-        E = expresson;
-        console.log(E);
-      }
+  $('#save'). click(function () {
+    if (screenInput == "A") {
+      A = expresson;
       screenInput = "";
-      $('#input').val(screenInput);
+      $('#result').val("A = " + A);
+      console.log(A);
+    } else if (screenInput == "B") {
+      B = expresson;
+      screenInput = "";
+        $('#result').val("B = " + B);
+      console.log(B);
+    } else if (screenInput == "C") {
+      C = expresson;
+      screenInput = "";
+        $('#result').val("C = " + C);
+      console.log(C);
+    } else if (screenInput == "D") {
+      D = expresson;
+      screenInput = "";
+        $('#result').val("D = " + D);
+      console.log(D);
+    } else if (screenInput == "E") {
+      E = expresson;
+      screenInput = "";
+        $('#result').val("E = " + E);
+      console.log(E);
+    } else {
+
+    }
+  });
+  $('#A').click(function () {
+    clickCounter++;
+    if (screenInput != "" && clickCounter == 1) {
+      console.log(expresson);
+      screenInput = $(this).val();
+    }
+    $(this).click(function () {
+      if (A != "" && clickCounter == 2) {
+        screenInput += A;
+        $('#input').val(screenInput);
+      }
     });
-    
+  });
+  $('#B').click(function () {
+    clickCounter++;
+    if (screenInput != "" && clickCounter == 1) {
+      console.log(expresson);
+      screenInput = $(this).val();
+    }
+    $(this).click(function () {
+      if (B != "" && clickCounter == 2) {
+        screenInput += B;
+        $('#input').val(screenInput);
+      }
+    });
+  });
+  $('#C').click(function () {
+    clickCounter++;
+    if (screenInput != "" && clickCounter == 1) {
+      console.log(expresson);
+      screenInput = $(this).val();
+    }
+    $(this).click(function () {
+      if (C != "" && clickCounter == 2) {
+        screenInput += C;
+        $('#input').val(screenInput);
+      }
+    });
+  });
+  $('#D').click(function () {
+    clickCounter++;
+    if (screenInput != "" && clickCounter == 1) {
+      console.log(expresson);
+      screenInput = $(this).val();
+    }
+    $(this).click(function () {
+      if (D != "" && clickCounter == 2) {
+        screenInput += D;
+        $('#input').val(screenInput);
+      }
+    });
+  });
+  $('#E').click(function () {
+    clickCounter++;
+    if (screenInput != "" && clickCounter == 1) {
+      console.log(expresson);
+      screenInput = $(this).val();
+    }
+    $(this).click(function () {
+      if (E != "" && clickCounter == 2) {
+        screenInput += E;
+        $('#input').val(screenInput);
+      }
+    });
+  });
   //stroy 11 also line 40-51
   $('.sqroot').click(function() {
     screenInput += $(this).val();
