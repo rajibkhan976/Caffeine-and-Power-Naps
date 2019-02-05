@@ -4,6 +4,8 @@ $(document).ready(function() {
   var total = "";
   var exponentCharOne = "";
   var exponentCharTwo = "";
+  var expresson = "";
+  var A = "", B = "", C = "", D = "", E = "";
 
   //story_2: display numbers (0-9) and controll capacity of the calculator
   $('.calc-number').click(function() {
@@ -14,6 +16,8 @@ $(document).ready(function() {
     } else {
       if (screenInput.length < 15) {
         $('#input').val(screenInput);
+        expresson = screenInput;
+        console.log(expresson);
       } else {
         alert("Sorry, the calculator can only handle 14 digits or less.");
       }
@@ -144,6 +148,7 @@ $(document).ready(function() {
   $('.parenthesis-close').click(function() {
     if (screenInput != "" && screenInput.charAt(screenInput.length - 1) != "(" && screenInput.charAt(screenInput.length - 1) != "*" && screenInput.charAt(screenInput.length - 1) != "-" && screenInput.charAt(screenInput.length - 1) != "+" && screenInput.charAt(screenInput.length - 1) != "/" && screenInput.charAt(screenInput.length - 1) != "^") {
       screenInput += $(this).val();
+      expresson = screenInput;
       $('#input').val(screenInput);
     }
   });
@@ -216,5 +221,31 @@ $(document).ready(function() {
   }
   $("#input").keydown(function() {
     Keyboard(event);
+  });
+  //story_12: Storing expression result to A, B, C, D, E and use Store button
+  $('.store').click(function () {
+    console.log(expresson);
+    screenInput = $(this).val();
+    $('#input').val(screenInput);
+    $('#save'). click(function () {
+      if (screenInput == "A") {
+        A = expresson;
+        console.log(A);
+      } else if (screenInput == "B") {
+        B = expresson;
+        console.log(B);
+      } else if (screenInput == "C") {
+        C = expresson;
+        console.log(C);
+      } else if (screenInput == "D") {
+        D = expresson;
+        console.log(D);
+      } else {
+        E = expresson;
+        console.log(E);
+      }
+      screenInput = "";
+      $('#input').val(screenInput);
+    });
   });
 });
