@@ -207,4 +207,10 @@ $(document).ready(function() {
   $("#input").keydown(function() {
     Keyboard(event);
   });
+
+//story 13
+$(".timer").click(function() {
+
+})
+
 });
