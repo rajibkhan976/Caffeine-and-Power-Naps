@@ -51,10 +51,20 @@ $(document).ready(function() {
         console.log(exponentCharTwo);
       } else {
         var exponentIndex = screenInput.indexOf("^");
-        exponentCharOne = eval(screenInput.substring(0, exponentIndex));
+        var exponentCharOneVal = screenInput.substring(0, exponentIndex);
+        if (exponentCharOneVal.includes("**") || exponentCharOneVal.includes("++") || exponentCharOneVal.includes("--")) {
+          $('#result').val("ERROR");
+          return;
+        }
+        exponentCharOne = eval(exponentCharOneVal);
         console.log(exponentCharOne);
         var exponentSplit = screenInput.split("^");
-        exponentCharTwo = eval(exponentSplit[1]);
+        var exponentCharTwoVal = exponentSplit[1];
+        if (exponentCharTwoVal.includes("**") || exponentCharTwoVal.includes("++") || exponentCharTwoVal.includes("--")) {
+          $('#result').val("ERROR");
+          return;
+        }
+        exponentCharTwo = eval(exponentCharTwoVal);
         console.log(exponentCharTwo);
       }
       var exponentResult = exponentCharOne;
