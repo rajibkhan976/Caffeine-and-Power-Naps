@@ -11,7 +11,7 @@ body {
   background-image: radial-gradient(circle, #0b147a, #1c2289, #293097, #353ea6, #404cb5, #404cb5, #404cb5, #404cb5, #353ea6, #293097, #1c2289, #0b147a);
 }
 
-#input, #result, #timmer {
+#input, #result, #timer {
   width: 260px;
   height: 50px;
   border: none;
@@ -27,7 +27,7 @@ body {
   border-radius: 10px 10px 0 0;
 }
 
-#timmer {
+#timer {
   height: 30px;
   margin-bottom: 20px;
   border-radius: 0 0 10px 10px;

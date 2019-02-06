@@ -337,4 +337,32 @@ $(document).ready(function() {
     screenInput += $(this).val();
     $('#input').val(screenInput);
   });
+
+  //story_13: clicktimer
+var sekunder = 0;
+var timer;
+
+function calculateTime(val) {
+  var timerResult = val + "";
+  if (timerResult.length < 2) {
+    return "0" + timerResult;
+  } else {
+    return timerResult;
+  }
+};
+$('#clicktimer').click(function() {
+  var started = $(this).data('started');
+  if (!started) {
+    sekunder = 0;
+    $("#timer").val("00:00");
+    timer = setInterval(function() {
+      var calSec = calculateTime(++sekunder % 60);
+      var calMin = calculateTime(parseInt(sekunder / 60, 10));
+      $("#timer").val(calMin + ":" + calSec);
+    }, 1000);
+  } else {
+    clearInterval(timer);
+  };
+  $(this).data('started', !started);
+});
 });
