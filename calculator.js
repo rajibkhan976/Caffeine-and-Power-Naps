@@ -5,7 +5,7 @@ $(document).ready(function() {
   var exponentCharOne = "";
   var exponentCharTwo = "";
   var expresson = "";
-  var A = "", B = "", C = "", D = "", E = "", clickController = 0;
+  var A = "", B = "", C = "", D = "", E = "";
 
   //story_2: display numbers (0-9) and controll capacity of the calculator
   $('.calc-number').click(function() {
@@ -238,7 +238,7 @@ $(document).ready(function() {
 
   //story_12: Storing expression result to A, B, C, D, E and use Store button
   $('.store').click(function () {
-    if (screenInput != "" && screenInput == expresson)  {
+    if (screenInput != "" && screenInput == expresson && A != expresson && B != expresson && C != expresson && D != expresson && E != expresson)  {
       console.log(expresson);
       screenInput = $(this).val();
     }
@@ -281,6 +281,7 @@ $(document).ready(function() {
   $('#A').click(function () {
       if (A != "") {
         screenInput += A;
+        console.log(screenInput);
         $('#input').val(screenInput);
       }
   });
