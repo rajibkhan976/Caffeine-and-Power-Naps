@@ -5,7 +5,54 @@ $(document).ready(function() {
   var exponentCharOne = "";
   var exponentCharTwo = "";
   var expresson = "";
-  var A = "", B = "", C = "", D = "", E = "";
+  var A = "",
+    B = "",
+    C = "",
+    D = "",
+    E = "";
+
+  //story_14:History
+  var list;
+
+  class calcHistory {
+    constructor(list = []) {
+      this.list = list;
+    }
+    addRow(inputData, resultData) {
+      if (inputData != " ") {
+        this.list.push({
+          rowInput: inputData,
+          rowResult: resultData
+        });
+      }
+    }
+    getRow() {
+      $('#displayHistory').html("");
+      // this.list[this.list.length - 1];
+      this.list.forEach(function(element) {
+        const displayRow = $("<p class='row'></p>");
+        $("#displayHistory").prepend(displayRow);
+        displayRow.append(element.rowInput + " = ");
+        displayRow.append("<br>");
+        displayRow.append(element.rowResult);
+        displayRow.append("<hr>");
+        console.log(element.rowInput);
+        console.log(element.rowResult);
+      });
+    }
+    deleteRow() {
+      if (this.list.length > 5) {
+        var historyChecker = this.list.indexOf(this.list[this.list.length - 5]);
+        console.log("historyChecker = " + historyChecker);
+        for (var i = 0; i < historyChecker; i++) {
+          this.list.shift();
+        }
+
+        console.log(this.list);
+      }
+    }
+  }
+  var history = new calcHistory();
 
   //story_2: display numbers (0-9) and controll capacity of the calculator
   $('.calc-number').click(function() {
@@ -35,7 +82,7 @@ $(document).ready(function() {
 
   //story 4: calculating numbers and showing error message
   function calculateTotal() {
-    if (screenInput.includes("√")){
+    if (screenInput.includes("√")) {
       if (!screenInput.includes("(")) {
         screenInput = screenInput.replace("√", "sqrt(")
         screenInput += ")"
@@ -95,7 +142,21 @@ $(document).ready(function() {
 
   $('.total').click(function() {
     calculateTotal();
+    history.addRow(screenInput, total);
   });
+
+  //story_14:history
+  $('#clickhistory').click(function() {
+    //console.log("history:");
+    $("#displayHistory").slideToggle("slow");
+    $("#displayHistory").html(" ");
+    history.deleteRow();
+
+    history.getRow();
+
+
+  });
+
   //story 5: decimal button is clickable, also automatically adds 0 before ".", if no other number has been clicked.
 
   function calculateDecimal() {
@@ -226,6 +287,7 @@ $(document).ready(function() {
           case 13:
             screenInput = screenInput.slice(0, screenInput.length - 1);
             calculateTotal();
+            history.addRow(screenInput, total);
             break;
         }
         $('#input').val(screenInput);
@@ -237,13 +299,13 @@ $(document).ready(function() {
   });
 
   //story_12: Storing expression result to A, B, C, D, E and use Store button
-  $('.store').click(function () {
-    if (screenInput != "" && screenInput == expresson && A != expresson && B != expresson && C != expresson && D != expresson && E != expresson)  {
+  $('.store').click(function() {
+    if (screenInput != "" && screenInput == expresson && A != expresson && B != expresson && C != expresson && D != expresson && E != expresson) {
       console.log(expresson);
       screenInput = $(this).val();
     }
   });
-  $('#save'). click(function () {
+  $('#save').click(function() {
     if (screenInput == "A") {
       A = expresson;
       screenInput = "";
@@ -278,36 +340,36 @@ $(document).ready(function() {
 
     }
   });
-  $('#A').click(function () {
-      if (A != "") {
-        screenInput += A;
-        console.log(screenInput);
-        $('#input').val(screenInput);
-      }
+  $('#A').click(function() {
+    if (A != "") {
+      screenInput += A;
+      console.log(screenInput);
+      $('#input').val(screenInput);
+    }
   });
-  $('#B').click(function () {
-      if (B != "") {
-        screenInput += B;
-        $('#input').val(screenInput);
-      }
+  $('#B').click(function() {
+    if (B != "") {
+      screenInput += B;
+      $('#input').val(screenInput);
+    }
   });
-  $('#C').click(function () {
-      if (C != "") {
-        screenInput += C;
-        $('#input').val(screenInput);
-      }
+  $('#C').click(function() {
+    if (C != "") {
+      screenInput += C;
+      $('#input').val(screenInput);
+    }
   });
-  $('#D').click(function () {
-      if (D != "") {
-        screenInput += D;
-        $('#input').val(screenInput);
-      }
+  $('#D').click(function() {
+    if (D != "") {
+      screenInput += D;
+      $('#input').val(screenInput);
+    }
   });
-  $('#E').click(function () {
-      if (E != "") {
-        screenInput += E;
-        $('#input').val(screenInput);
-      }
+  $('#E').click(function() {
+    if (E != "") {
+      screenInput += E;
+      $('#input').val(screenInput);
+    }
   });
 
   //stroy 11 also line 40-51
@@ -317,30 +379,30 @@ $(document).ready(function() {
   });
 
   //story_13: clicktimer
-var sekunder = 0;
-var timer;
+  var sekunder = 0;
+  var timer;
 
-function calculateTime(val) {
-  var timerResult = val + "";
-  if (timerResult.length < 2) {
-    return "0" + timerResult;
-  } else {
-    return timerResult;
-  }
-};
-$('#clicktimer').click(function() {
-  var started = $(this).data('started');
-  if (!started) {
-    sekunder = 0;
-    $("#timer").val("00:00");
-    timer = setInterval(function() {
-      var calSec = calculateTime(++sekunder % 60);
-      var calMin = calculateTime(parseInt(sekunder / 60, 10));
-      $("#timer").val(calMin + ":" + calSec);
-    }, 1000);
-  } else {
-    clearInterval(timer);
+  function calculateTime(val) {
+    var timerResult = val + "";
+    if (timerResult.length < 2) {
+      return "0" + timerResult;
+    } else {
+      return timerResult;
+    }
   };
-  $(this).data('started', !started);
-});
+  $('#clicktimer').click(function() {
+    var started = $(this).data('started');
+    if (!started) {
+      sekunder = 0;
+      $("#timer").val("00:00");
+      timer = setInterval(function() {
+        var calSec = calculateTime(++sekunder % 60);
+        var calMin = calculateTime(parseInt(sekunder / 60, 10));
+        $("#timer").val(calMin + ":" + calSec);
+      }, 1000);
+    } else {
+      clearInterval(timer);
+    };
+    $(this).data('started', !started);
+  });
 });

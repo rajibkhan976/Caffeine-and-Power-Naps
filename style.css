@@ -6,7 +6,7 @@ body {
   border: 1px solid #DFE0E1;
   border-radius: 10px;
   width: 285px;
-  height: 550px;
+  height: 580px;
   padding: 25px;
   background-image: radial-gradient(circle, #0b147a, #1c2289, #293097, #353ea6, #404cb5, #404cb5, #404cb5, #404cb5, #353ea6, #293097, #1c2289, #0b147a);
 }
@@ -32,6 +32,22 @@ body {
   margin-bottom: 20px;
   border-radius: 0 0 10px 10px;
   font-size: 150%;
+}
+
+#displayHistory {
+  padding: 5px;
+  position: absolute;
+  top: 190px;
+  left: 65px;
+  width: 270px;
+  height: 490px;
+  text-align: right;
+  color: #0B147A;
+  font-size: 100%;
+  background-color: #E9F4FA;
+  border: solid 1px #c3c3c3;
+  border-radius: 10px;
+  display: none;
 }
 
 input[type=button], button {

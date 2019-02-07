@@ -14,13 +14,13 @@
   <h1>Calculator</h1>
   <div class="container">
     <div class="history">
-      <button type="button" class="topbtn" name="button"><i class="material-icons">history</i></button>
+      <button type="button" id="clickhistory" class="topbtn" name="button"><i class="material-icons">history</i></button>
       <button type="button" id="clicktimer" class="topbtn" id="timer" name="button"><i class="material-icons">timer</i></button>
       <!--input type="button" class="topbtn" value="h" onclick="" style="width:30px;height:30px;"-->
       <!--input type="button" class="topbtn" value="t" style="width:30px;height:30px;"-->
     </div>
     <div class="screen">
-      <input type="text" id="input" name="input" value="" readonly placeholder="0" >
+      <input type="text" id="input" name="input" value="" readonly placeholder="0">
       <input type="text" id="result" name="result" value="" readonly>
       <input type="text" id="timer" name="timer" value="" readonly placeholder="00.00">
     </div>
@@ -77,7 +77,11 @@
       </table>
     </div>
   </div>
+  <div id="displayHistory" class="displayHistory">
+
+  </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script type="text/javascript" src="calculator.js"></script>
 </body>
+
 </html>
