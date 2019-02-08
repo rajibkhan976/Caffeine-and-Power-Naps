@@ -47,7 +47,6 @@ $(document).ready(function() {
         for (var i = 0; i < historyChecker; i++) {
           this.list.shift();
         }
-
         console.log(this.list);
       }
     }
@@ -151,10 +150,7 @@ $(document).ready(function() {
     $("#displayHistory").slideToggle("slow");
     $("#displayHistory").html(" ");
     history.deleteRow();
-
     history.getRow();
-
-
   });
 
   //story 5: decimal button is clickable, also automatically adds 0 before ".", if no other number has been clicked.
