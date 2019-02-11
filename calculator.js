@@ -10,7 +10,12 @@ $(document).ready(function() {
     C = "",
     D = "",
     E = "";
-
+  var numInputObject = {'zero' : '0', 'one' : '1',
+                        'two' : '2', 'three' : '3',
+                        'four' : '4', 'five' : '5',
+                        'six' : '6', 'seven' : '7',
+                        'eight' : '8', 'nine' : '9'};
+  var operateInputObject = {'plus' : '+', 'minus' : '-', 'multiply' : '*', 'divide' : '/', 'squareroot' : '√','exponent' : '^'};
   //story_14:History
   var list;
 
@@ -128,12 +133,18 @@ $(document).ready(function() {
           return;
         }
         exponentCharTwo = eval(exponentCharTwoVal);
-        console.log(exponentCharTwo);
+        console.log(number_test(exponentCharTwo));
       }
-      var exponentResult = exponentCharOne;
-      for (var c = 1; c < parseInt(exponentCharTwo); c++) {
-        var exponentCal = exponentResult * exponentCharOne;
-        exponentResult = exponentCal;
+      console.log(screenInput);
+      console.log(exponentCharTwo);
+      if (number_test(exponentCharTwo) == 'Number has a decimal place.') {
+        exponentResult = Math.ceil(Math.pow(exponentCharOne, exponentCharTwo));
+      } else {
+        var exponentResult = exponentCharOne;
+        for (var c = 1; c < parseInt(exponentCharTwo); c++) {
+          var exponentCal = exponentResult * exponentCharOne;
+          exponentResult = exponentCal;
+        }
       }
       $('#result').val(exponentResult);
     }
@@ -206,6 +217,7 @@ $(document).ready(function() {
   $('#clear').click(function() {
     screenInput = "";
     $('#input').val(screenInput);
+    $('#timer').val(screenInput);
     total = "";
     $('#result').val(total);
   });
@@ -247,25 +259,17 @@ $(document).ready(function() {
   }
   console.log(keyboardInput);
 
-
   function Keyboard(event) {
     var char = event.which || event.keyCode;
     console.log("char=" + char);
     for (var i = 0; i < 17; i++) {
-
-      //console.log(keyboardInput['event' + i]);
       if (char == keyboardInput['event' + i]) {
         if (event.shiftKey && char == 55) {
           operatorInput = "/";
           screenInput += operatorInput;
-          //  alert("The SHIFT key was pressed!");
         } else {
           screenInput += keyboardInput['button' + i];
         }
-        /*if (!event.shiftKey && char == 55) {
-          screenInput = "7";
-          //  alert("The SHIFT key was pressed!");
-        }*/
         switch (char) {
           case 187:
           case 189:
@@ -293,7 +297,6 @@ $(document).ready(function() {
   $("#input").keydown(function() {
     Keyboard(event);
   });
-
   //story_12: Storing expression result to A, B, C, D, E and use Store button
   $('.store').click(function() {
     if (screenInput != "" && screenInput == expresson && A != expresson && B != expresson && C != expresson && D != expresson && E != expresson) {
@@ -401,4 +404,69 @@ $(document).ready(function() {
     };
     $(this).data('started', !started);
   });
+  //Story_16 text inputData
+  var finalExpression = "", textInputArray = {};
+  function textInput (userTextInput) {
+    textInputArray = userTextInput.split(" ");
+    for (var textInputValueCount = 0; textInputValueCount < textInputArray.length; textInputValueCount++) {
+      var textInputValue = textInputArray[textInputValueCount];
+    }
+    numTextInput (textInputValue);
+    operateTextInput (textInputValue);
+    textInputArray.shift();
+    console.log(textInputArray);
+  }
+  function numTextInput (numInput) {
+    for (var numInputCount in numInputObject) {
+      if (numInput == numInputCount) {
+        screenInput += numInputObject[numInputCount];
+        $('#input').val(screenInput);
+      }
+    }
+    console.log(screenInput);
+  }
+  function operateTextInput (operateInput) {
+    for (var operateInputCount in operateInputObject) {
+      if (operateInput == operateInputCount) {
+        operatorInput = operateInputObject[operateInputCount];
+        screenInput += operatorInput;
+        $('#input').val(screenInput);
+      }
+    }
+    console.log(screenInput);
+  }
+  $('#timer').keyup(function () {
+    finalExpression = $(this).val();
+    textInput (finalExpression);
+  });
+  //story_17 chat function
+  var feedback = "", userMessage = "";
+  function calcBot (message) {
+    if (message == "Hello") {
+      feedback = "Hi, how are you?";
+    } else if (message == "I'm sad") {
+      feedback = "Why are you sad?";
+    } else if (message == "I'm happy") {
+      feedback = "What makes you happy?";
+    } else {
+      feedback = "I don’t understand";
+    }
+    return feedback;
+  }
+  $('#result').keyup(function (event) {
+    if (event.keyCode === 13) {
+      userMessage = $(this).val();
+      $('#timer').val(calcBot (userMessage));
+    }
+  });
+  //number_test Function
+  function number_test(n)
+{
+   var result = (n - Math.floor(n)) !== 0;
+
+  if (result)
+    return 'Number has a decimal place.';
+   else
+     return 'It is a whole number.';
+  }
 });
