@@ -41,7 +41,7 @@ $(document).ready(function() {
       });
     }
     deleteRow() {
-      if (this.list.length > 5) {
+      if (this.list.length > 50) {
         var historyChecker = this.list.indexOf(this.list[this.list.length - 5]);
         console.log("historyChecker = " + historyChecker);
         for (var i = 0; i < historyChecker; i++) {
