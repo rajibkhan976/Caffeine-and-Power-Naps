@@ -10,10 +10,14 @@ $(document).ready(function() {
     C = "",
     D = "",
     E = "";
-
+  var numInputObject = {'zero' : '0', 'one' : '1',
+                        'two' : '2', 'three' : '3',
+                        'four' : '4', 'five' : '5',
+                        'six' : '6', 'seven' : '7',
+                        'eight' : '8', 'nine' : '9'};
+  var operateInputObject = {'plus' : '+', 'minus' : '-', 'multiply' : '*', 'divide' : '/', 'squareroot' : '√','exponent' : '^'};
   //story_14:History
   var list;
-
   class calcHistory {
     constructor(list = []) {
       this.list = list;
@@ -47,13 +51,11 @@ $(document).ready(function() {
         for (var i = 0; i < historyChecker; i++) {
           this.list.shift();
         }
-
         console.log(this.list);
       }
     }
   }
   var history = new calcHistory();
-
   //story_2: display numbers (0-9) and controll capacity of the calculator
   $('.calc-number').click(function() {
     screenInput += $(this).val();
@@ -70,7 +72,6 @@ $(document).ready(function() {
       }
     }
   });
-
   //story_3: display the operator(+,-,×,÷)
   $('.calc-operator').click(function() {
     operatorInput = $(this).val();
@@ -79,7 +80,6 @@ $(document).ready(function() {
       $('#input').val(screenInput);
     }
   });
-
   //story 4: calculating numbers and showing error message
   function calculateTotal() {
     if (screenInput.includes("√")) {
@@ -129,36 +129,35 @@ $(document).ready(function() {
           return;
         }
         exponentCharTwo = eval(exponentCharTwoVal);
-        console.log(exponentCharTwo);
+        console.log(number_test(exponentCharTwo));
       }
-      var exponentResult = exponentCharOne;
-      for (var c = 1; c < parseInt(exponentCharTwo); c++) {
-        var exponentCal = exponentResult * exponentCharOne;
-        exponentResult = exponentCal;
+      console.log(screenInput);
+      console.log(exponentCharTwo);
+      if (number_test(exponentCharTwo) == 'Number has a decimal place.') {
+        exponentResult = Math.ceil(Math.pow(exponentCharOne, exponentCharTwo));
+      } else {
+        var exponentResult = exponentCharOne;
+        for (var c = 1; c < parseInt(exponentCharTwo); c++) {
+          var exponentCal = exponentResult * exponentCharOne;
+          exponentResult = exponentCal;
+        }
       }
       $('#result').val(exponentResult);
     }
   }
-
   $('.total').click(function() {
     calculateTotal();
     history.addRow(screenInput, total);
   });
-
   //story_14:history
   $('#clickhistory').click(function() {
     //console.log("history:");
     $("#displayHistory").slideToggle("slow");
     $("#displayHistory").html(" ");
     history.deleteRow();
-
     history.getRow();
-
-
   });
-
   //story 5: decimal button is clickable, also automatically adds 0 before ".", if no other number has been clicked.
-
   function calculateDecimal() {
     var lastChar = screenInput.charAt(screenInput.length - 1);
     if (screenInput == "" && operatorInput == ".") {
@@ -174,12 +173,10 @@ $(document).ready(function() {
       $('#input').val(screenInput);
     };
   }
-
   $('.decimal').click(function() {
     operatorInput = $(this).val();
     calculateDecimal();
   });
-
   //Function to check if the input is a number or not (need it for story5)
   function checkIfNumber(input) {
     switch (input) {
@@ -194,7 +191,6 @@ $(document).ready(function() {
         return true;
     }
   };
-
   //story_6: button that removes the last character that was clicked on.
   function calculateBackspace() {
     var screenInput_length = screenInput.length - 1;
@@ -205,15 +201,14 @@ $(document).ready(function() {
   $('.calc-backspace').click(function() {
     calculateBackspace();
   });
-
   //story_7 clear the input and output
   $('#clear').click(function() {
     screenInput = "";
     $('#input').val(screenInput);
+    $('#timer').val(screenInput);
     total = "";
     $('#result').val(total);
   });
-
   //story_8
   $('.parenthesis-open').click(function() {
     screenInput += $(this).val();
@@ -226,7 +221,6 @@ $(document).ready(function() {
       $('#input').val(screenInput);
     }
   });
-
   //story_10: exponent operator
   $('#exponent').click(function() {
     if (screenInput != "" && !screenInput.includes("^")) {
@@ -239,37 +233,26 @@ $(document).ready(function() {
   var operatorArray = ["+", "-", "*", ".", " ", "=", "/"];
   var operatorkeybordArray = [187, 189, 191, 190, 8, 13, 55];
   var keyboardInput = {};
-
   for (var i = 0; i < 10; i++) {
     keyboardInput['button' + i] = i;
     keyboardInput['event' + i] = i + 48;
   }
-
   for (var i = 10; i < 16; i++) {
     keyboardInput['button' + i] = operatorArray[i - 10];
     keyboardInput['event' + i] = operatorkeybordArray[i - 10];
   }
   console.log(keyboardInput);
-
-
   function Keyboard(event) {
     var char = event.which || event.keyCode;
     console.log("char=" + char);
     for (var i = 0; i < 17; i++) {
-
-      //console.log(keyboardInput['event' + i]);
       if (char == keyboardInput['event' + i]) {
         if (event.shiftKey && char == 55) {
           operatorInput = "/";
           screenInput += operatorInput;
-          //  alert("The SHIFT key was pressed!");
         } else {
           screenInput += keyboardInput['button' + i];
         }
-        /*if (!event.shiftKey && char == 55) {
-          screenInput = "7";
-          //  alert("The SHIFT key was pressed!");
-        }*/
         switch (char) {
           case 187:
           case 189:
@@ -298,7 +281,6 @@ $(document).ready(function() {
   $("#input").keydown(function() {
     Keyboard(event);
   });
-
   //story_12: Storing expression result to A, B, C, D, E and use Store button
   $('.store').click(function() {
     if (screenInput != "" && screenInput == expresson && A != expresson && B != expresson && C != expresson && D != expresson && E != expresson) {
@@ -372,17 +354,14 @@ $(document).ready(function() {
       $('#input').val(screenInput);
     }
   });
-
   //stroy 11 also line 40-51
   $('.sqroot').click(function() {
     screenInput += $(this).val();
     $('#input').val(screenInput);
   });
-
   //story_13: clicktimer
   var sekunder = 0;
   var timer;
-
   function calculateTime(val) {
     var timerResult = val + "";
     if (timerResult.length < 2) {
@@ -406,4 +385,49 @@ $(document).ready(function() {
     };
     $(this).data('started', !started);
   });
+  //Story_16 text inputData
+  var finalExpression = "", textInputArray = {};
+  function textInput (userTextInput) {
+    textInputArray = userTextInput.split(" ");
+    for (var textInputValueCount = 0; textInputValueCount < textInputArray.length; textInputValueCount++) {
+      var textInputValue = textInputArray[textInputValueCount];
+    }
+    numTextInput (textInputValue);
+    operateTextInput (textInputValue);
+    textInputArray.shift();
+    console.log(textInputArray);
+  }
+  function numTextInput (numInput) {
+    for (var numInputCount in numInputObject) {
+      if (numInput == numInputCount) {
+        screenInput += numInputObject[numInputCount];
+        $('#input').val(screenInput);
+      }
+    }
+    console.log(screenInput);
+  }
+  function operateTextInput (operateInput) {
+    for (var operateInputCount in operateInputObject) {
+      if (operateInput == operateInputCount) {
+        operatorInput = operateInputObject[operateInputCount];
+        screenInput += operatorInput;
+        $('#input').val(screenInput);
+      }
+    }
+    console.log(screenInput);
+  }
+  $('#timer').keyup(function () {
+    finalExpression = $(this).val();
+    textInput (finalExpression);
+  });
+  //number_test Function
+  function number_test(n)
+{
+   var result = (n - Math.floor(n)) !== 0;
+
+  if (result)
+    return 'Number has a decimal place.';
+   else
+     return 'It is a whole number.';
+  }
 });
