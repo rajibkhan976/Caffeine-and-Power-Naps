@@ -18,7 +18,6 @@ $(document).ready(function() {
   var operateInputObject = {'plus' : '+', 'minus' : '-', 'multiply' : '*', 'divide' : '/', 'squareroot' : '√','exponent' : '^'};
   //story_14:History
   var list;
-
   class calcHistory {
     constructor(list = []) {
       this.list = list;
@@ -57,7 +56,6 @@ $(document).ready(function() {
     }
   }
   var history = new calcHistory();
-
   //story_2: display numbers (0-9) and controll capacity of the calculator
   $('.calc-number').click(function() {
     screenInput += $(this).val();
@@ -74,7 +72,6 @@ $(document).ready(function() {
       }
     }
   });
-
   //story_3: display the operator(+,-,×,÷)
   $('.calc-operator').click(function() {
     operatorInput = $(this).val();
@@ -83,7 +80,6 @@ $(document).ready(function() {
       $('#input').val(screenInput);
     }
   });
-
   //story 4: calculating numbers and showing error message
   function calculateTotal() {
     if (screenInput.includes("√")) {
@@ -149,12 +145,10 @@ $(document).ready(function() {
       $('#result').val(exponentResult);
     }
   }
-
   $('.total').click(function() {
     calculateTotal();
     history.addRow(screenInput, total);
   });
-
   //story_14:history
   $('#clickhistory').click(function() {
     //console.log("history:");
@@ -163,9 +157,7 @@ $(document).ready(function() {
     history.deleteRow();
     history.getRow();
   });
-
   //story 5: decimal button is clickable, also automatically adds 0 before ".", if no other number has been clicked.
-
   function calculateDecimal() {
     var lastChar = screenInput.charAt(screenInput.length - 1);
     if (screenInput == "" && operatorInput == ".") {
@@ -181,12 +173,10 @@ $(document).ready(function() {
       $('#input').val(screenInput);
     };
   }
-
   $('.decimal').click(function() {
     operatorInput = $(this).val();
     calculateDecimal();
   });
-
   //Function to check if the input is a number or not (need it for story5)
   function checkIfNumber(input) {
     switch (input) {
@@ -201,7 +191,6 @@ $(document).ready(function() {
         return true;
     }
   };
-
   //story_6: button that removes the last character that was clicked on.
   function calculateBackspace() {
     var screenInput_length = screenInput.length - 1;
@@ -212,7 +201,6 @@ $(document).ready(function() {
   $('.calc-backspace').click(function() {
     calculateBackspace();
   });
-
   //story_7 clear the input and output
   $('#clear').click(function() {
     screenInput = "";
@@ -221,7 +209,6 @@ $(document).ready(function() {
     total = "";
     $('#result').val(total);
   });
-
   //story_8
   $('.parenthesis-open').click(function() {
     screenInput += $(this).val();
@@ -234,7 +221,6 @@ $(document).ready(function() {
       $('#input').val(screenInput);
     }
   });
-
   //story_10: exponent operator
   $('#exponent').click(function() {
     if (screenInput != "" && !screenInput.includes("^")) {
@@ -247,18 +233,15 @@ $(document).ready(function() {
   var operatorArray = ["+", "-", "*", ".", " ", "=", "/"];
   var operatorkeybordArray = [187, 189, 191, 190, 8, 13, 55];
   var keyboardInput = {};
-
   for (var i = 0; i < 10; i++) {
     keyboardInput['button' + i] = i;
     keyboardInput['event' + i] = i + 48;
   }
-
   for (var i = 10; i < 16; i++) {
     keyboardInput['button' + i] = operatorArray[i - 10];
     keyboardInput['event' + i] = operatorkeybordArray[i - 10];
   }
   console.log(keyboardInput);
-
   function Keyboard(event) {
     var char = event.which || event.keyCode;
     console.log("char=" + char);
@@ -370,17 +353,14 @@ $(document).ready(function() {
       $('#input').val(screenInput);
     }
   });
-
   //stroy 11 also line 40-51
   $('.sqroot').click(function() {
     screenInput += $(this).val();
     $('#input').val(screenInput);
   });
-
   //story_13: clicktimer
   var sekunder = 0;
   var timer;
-
   function calculateTime(val) {
     var timerResult = val + "";
     if (timerResult.length < 2) {
