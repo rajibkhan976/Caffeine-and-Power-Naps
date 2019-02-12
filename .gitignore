@@ -1,7 +1,7 @@
 node_modules
-babelrc
-package
-package-lock
-js
-Rajib-Eva-Test2
 test
+Rajib-Eva-Test2
+js
+.babelrc
+package.json
+package-lock.json
