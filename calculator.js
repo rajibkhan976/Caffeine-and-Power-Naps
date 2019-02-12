@@ -419,26 +419,6 @@ $(document).ready(function() {
     finalExpression = $(this).val();
     textInput (finalExpression);
   });
-  //story_17 chat function
-  var feedback = "", userMessage = "";
-  function calcBot (message) {
-    if (message == "Hello") {
-      feedback = "Hi, how are you?";
-    } else if (message == "I'm sad") {
-      feedback = "Why are you sad?";
-    } else if (message == "I'm happy") {
-      feedback = "What makes you happy?";
-    } else {
-      feedback = "I don’t understand";
-    }
-    return feedback;
-  }
-  $('#result').keyup(function (event) {
-    if (event.keyCode === 13) {
-      userMessage = $(this).val();
-      $('#timer').val(calcBot (userMessage));
-    }
-  });
   //number_test Function
   function number_test(n)
 {
