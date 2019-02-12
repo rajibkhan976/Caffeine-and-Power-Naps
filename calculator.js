@@ -10,12 +10,26 @@ $(document).ready(function() {
     C = "",
     D = "",
     E = "";
-  var numInputObject = {'zero' : '0', 'one' : '1',
-                        'two' : '2', 'three' : '3',
-                        'four' : '4', 'five' : '5',
-                        'six' : '6', 'seven' : '7',
-                        'eight' : '8', 'nine' : '9'};
-  var operateInputObject = {'plus' : '+', 'minus' : '-', 'multiply' : '*', 'divide' : '/', 'squareroot' : '√','exponent' : '^'};
+  var numInputObject = {
+    'zero': '0',
+    'one': '1',
+    'two': '2',
+    'three': '3',
+    'four': '4',
+    'five': '5',
+    'six': '6',
+    'seven': '7',
+    'eight': '8',
+    'nine': '9'
+  };
+  var operateInputObject = {
+    'plus': '+',
+    'minus': '-',
+    'multiply': '*',
+    'divide': '/',
+    'squareroot': '√',
+    'exponent': '^'
+  };
   //story_14:History
   var list;
   class calcHistory {
@@ -230,22 +244,26 @@ $(document).ready(function() {
     }
   });
   //story_9: use the keyboard instead of clicking on the buttons with the mouse.
-  var operatorArray = ["+", "-", "*", ".", " ", "=", "/"];
-  var operatorkeybordArray = [187, 189, 191, 190, 8, 13, 55];
+  var operatorArray = ["x", "+", "-", "*", ".", " ", "=", "/"];
+  var operatorkeybordArray = [88, 187, 189, 191, 190, 8, 13, 55];
   var keyboardInput = {};
   for (var i = 0; i < 10; i++) {
     keyboardInput['button' + i] = i;
     keyboardInput['event' + i] = i + 48;
   }
-  for (var i = 10; i < 16; i++) {
+
+  for (var i = 10; i < 17; i++) {
     keyboardInput['button' + i] = operatorArray[i - 10];
     keyboardInput['event' + i] = operatorkeybordArray[i - 10];
   }
   console.log(keyboardInput);
+
   function Keyboard(event) {
     var char = event.which || event.keyCode;
     console.log("char=" + char);
-    for (var i = 0; i < 17; i++) {
+    for (var i = 0; i < 18; i++) {
+
+      //console.log(keyboardInput['event' + i]);
       if (char == keyboardInput['event' + i]) {
         if (event.shiftKey && char == 55) {
           operatorInput = "/";
@@ -362,6 +380,7 @@ $(document).ready(function() {
   //story_13: clicktimer
   var sekunder = 0;
   var timer;
+
   function calculateTime(val) {
     var timerResult = val + "";
     if (timerResult.length < 2) {
@@ -386,18 +405,21 @@ $(document).ready(function() {
     $(this).data('started', !started);
   });
   //Story_16 text inputData
-  var finalExpression = "", textInputArray = {};
-  function textInput (userTextInput) {
+  var finalExpression = "",
+    textInputArray = {};
+
+  function textInput(userTextInput) {
     textInputArray = userTextInput.split(" ");
     for (var textInputValueCount = 0; textInputValueCount < textInputArray.length; textInputValueCount++) {
       var textInputValue = textInputArray[textInputValueCount];
     }
-    numTextInput (textInputValue);
-    operateTextInput (textInputValue);
+    numTextInput(textInputValue);
+    operateTextInput(textInputValue);
     textInputArray.shift();
     console.log(textInputArray);
   }
-  function numTextInput (numInput) {
+
+  function numTextInput(numInput) {
     for (var numInputCount in numInputObject) {
       if (numInput == numInputCount) {
         screenInput += numInputObject[numInputCount];
@@ -406,7 +428,8 @@ $(document).ready(function() {
     }
     console.log(screenInput);
   }
-  function operateTextInput (operateInput) {
+
+  function operateTextInput(operateInput) {
     for (var operateInputCount in operateInputObject) {
       if (operateInput == operateInputCount) {
         operatorInput = operateInputObject[operateInputCount];
@@ -416,18 +439,54 @@ $(document).ready(function() {
     }
     console.log(screenInput);
   }
-  $('#timer').keyup(function () {
+  $('#timer').keyup(function() {
     finalExpression = $(this).val();
-    textInput (finalExpression);
+    textInput(finalExpression);
   });
   //number_test Function
-  function number_test(n)
-{
-   var result = (n - Math.floor(n)) !== 0;
+  function number_test(n) {
+    var result = (n - Math.floor(n)) !== 0;
 
-  if (result)
-    return 'Number has a decimal place.';
-   else
-     return 'It is a whole number.';
+    if (result)
+      return 'Number has a decimal place.';
+    else
+      return 'It is a whole number.';
   }
+});
+
+//story_15:
+function draw() {
+  try {
+    // compile the expression once
+    const expression = document.getElementById('input').value;
+    console.log("expression:" + expression);
+    const expr = math.compile(expression);
+
+    // evaluate the expression repeatedly for different values of x
+    const xValues = math.range(-10, 10, 0.5).toArray()
+    const yValues = xValues.map(function(x) {
+      return expr.eval({
+        x: x
+      })
+    })
+
+    // render the plot using plotly
+    const trace1 = {
+      x: xValues,
+      y: yValues,
+      type: 'scatter'
+    }
+    const data = [trace1]
+    Plotly.newPlot('plot', data)
+  } catch (err) {
+    console.error(err)
+    alert(err)
+  }
+}
+
+$('#draw').click(function(event) {
+  console.log("click draw");
+  draw();
+  $("#plot").slideToggle("slow");
+
 });

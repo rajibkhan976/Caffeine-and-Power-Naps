@@ -34,7 +34,7 @@ body {
   font-size: 150%;
 }
 
-.displayHistory {
+.displayHistory, #plot {
   padding: 5px;
   position: absolute;
   top: 190px;
@@ -73,6 +73,15 @@ body {
     color-stop(0.86, rgb(28, 58, 148)));
 }
 
+#plot {
+  height: 500px;
+  overflow: hidden;
+}
+
+.modebar {
+  display: none;
+}
+
 input[type=button], button {
   width: 50px;
   height: 50px;
@@ -90,9 +99,14 @@ input[type=button]:hover {
   background-color: #4F5FC9;
 }
 
-.topbtn {
+.topbtn-right {
   float: right;
   margin-right: 10px;
+}
+
+.topbtn-left {
+  float: left;
+  margin-left: 10px;
 }
 
 #chatDisplay {
@@ -103,7 +117,7 @@ input[type=button]:hover {
   top: 190px;
   left: 65px;
   width: 270px;
-  height:490px;
+  height: 490px;
   text-align: right;
   color: #0B147A;
   font-size: 100%;
@@ -114,32 +128,32 @@ input[type=button]:hover {
 }
 
 #chatInput {
-  display:block;
+  display: block;
   margin: 0 auto;
   margin-top: 10px;
-  background-color:white;
+  background-color: white;
   padding: 13px;
   width: 230px;
   font-size: 16px;
-  outline:none;
+  outline: none;
 }
 
 #send {
   width: 70px;
-  height:30px;
+  height: 30px;
   background-color: #4F5FC9;
   border-radius: 10px;
-  border:0px;
+  border: 0px;
   color: white;
   font-size: 100%;
   text-decoration: none;
   cursor: pointer;
   margin-top: 5px;
-  outline:none;
+  outline: none;
 }
 
 #send:hover {
-  background-color:rgb(19, 38, 163);
+  background-color: rgb(19, 38, 163);
 }
 
 ul {
@@ -147,7 +161,7 @@ ul {
   list-style-type: none;
   transform: rotate(180deg);
 }
-  
+
 .chat-output {
   text-align: left;
   padding: 10px;
@@ -158,8 +172,8 @@ ul {
   padding: 10px;
   border-radius: 9px;
   color: #fff;
-  position:relative;
-  display:none;
+  position: relative;
+  display: none;
   transform: rotate(-180deg);
 }
 
@@ -173,11 +187,11 @@ ul {
   padding: 10px;
   border-radius: 9px;
   color: #fff;
-  position:relative;
-  display:none;
+  position: relative;
+  display: none;
   transform: rotate(-180deg);
 }
-  
+
 .chat-input:before {
   content: "";
   width: 0px;
@@ -190,7 +204,7 @@ ul {
   right: -10px;
   top: 6px;
 }
-  
+
 .chat-output:before {
   content: "";
   width: 0px;

@@ -16,9 +16,11 @@
   <h1>Calculator</h1>
   <div class="container">
     <div class="history">
-      <button type="button" id="clickhistory" class="topbtn" name="button"><i class="material-icons">history</i></button>
-      <button type="button" id="clicktimer" class="topbtn" id="timer" name="button"><i class="material-icons">timer</i></button>
-      <button type="button" id="chat" class="topbtn" name="button"><i class="material-icons">chat_bubble_outline</i></button>
+      <button type="button" id="clickhistory" class="topbtn-right" name="button"><i class="material-icons">history</i></button>
+      <button type="button" id="clicktimer" class="topbtn-right" name="button"><i class="material-icons">timer</i></button>
+      <button type="button" id="chat" class="topbtn-left " name="button"><i class="material-icons">chat_bubble_outline</i></button>
+      <input id="draw" class="topbtn-left " type="button" value="DR">
+
     </div>
     <div class="screen">
       <input type="text" id="input" name="input" value="" readonly placeholder="0">
@@ -82,11 +84,14 @@
   </div>
   <div id="chatDisplay" class="chatDisplay">
     <div class="inputBoxButton">
-        <input type="text" id="chatInput">
-        <button id="send">Send</button>    
-    </div> 
-    <ul class="chatMessages"></ul>  
+      <input type="text" id="chatInput">
+      <button id="send">Send</button>
+    </div>
+    <ul class="chatMessages"></ul>
   </div>
+  <div id="plot"></div>
+  <script src="https://unpkg.com/mathjs@5.4.2/dist/math.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-1.35.2.min.js"></script>
 
   <script type="text/javascript" src="calculator.js"></script>
 </body>
