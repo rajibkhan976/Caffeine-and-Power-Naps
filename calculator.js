@@ -261,6 +261,7 @@ $(document).ready(function() {
             break;
           case 190:
             operatorInput = keyboardInput['button' + i];
+            console.log(screenInput)
             calculateDecimal()
             break;
           case 8:
