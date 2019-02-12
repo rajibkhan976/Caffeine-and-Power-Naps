@@ -20,7 +20,7 @@ $(document).ready(function() {
     const validGreetings = ['hello', 'hi', 'hey', 'hej'];
     const validBadMoods = ['bad', 'sad', 'upset', 'angry', 'not good'];
     const validGoodMoods = ['good', 'happy', 'okay', 'great', 'awesome'];
-    const validGoodbyes = ['goodbye', 'bye', 'later', 'hejdå']
+    const validGoodbyes = ['goodbye', 'bye', 'later', 'hejdå'];
 
     function checkInput (input, validArray) {
         var isInArray = false;
@@ -51,12 +51,12 @@ $(document).ready(function() {
             $('.chat-output').show(1000);
         } else if (isBadMood) {
             $('.chatMessages').append(appendInput);
-            $('.chatMessages').append('<li class="chat-output">' + "I'm sorry to hear that. <br> I hope your day gets better!" + '</li>');
+            $('.chatMessages').append('<li class="chat-output">' + "I'm sorry to hear that. <br> Why are you having a bad day?" + '</li>');
             $('.chat-input').show();
             $('.chat-output').show(1000);
         } else if (isGoodMood) {
             $('.chatMessages').append(appendInput);
-            $('.chatMessages').append('<li class="chat-output">' + "Yay!! I'm glad you're having a good day." + '</li>');
+            $('.chatMessages').append('<li class="chat-output">' + "I'm glad you're having a good day." + '</li>');
             $('.chat-input').show();
             $('.chat-output').show(1000);
         } else if (isGoodbye) {
