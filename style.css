@@ -52,18 +52,18 @@ body {
   scroll-behavior: smooth;
 }
 
-#displayHistory::-webkit-scrollbar-track {
+#displayHistory::-webkit-scrollbar-track, #chatDisplay::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #F5F5F5;
   border-radius: 10px;
 }
 
-#displayHistory::-webkit-scrollbar {
+#displayHistory::-webkit-scrollbar, #chatDisplay::-webkit-scrollbar {
   width: 10px;
   background-color: #F5F5F5;
 }
 
-#displayHistory::-webkit-scrollbar-thumb {
+#displayHistory::-webkit-scrollbar-thumb, #chatDisplay::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background-image: -webkit-gradient(linear,
     left bottom,
@@ -93,4 +93,113 @@ input[type=button]:hover {
 .topbtn {
   float: right;
   margin-right: 10px;
+}
+
+#chatDisplay {
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+  padding: 5px;
+  position: absolute;
+  top: 190px;
+  left: 65px;
+  width: 270px;
+  height:490px;
+  text-align: right;
+  color: #0B147A;
+  font-size: 100%;
+  background-color: #E9F4FA;
+  border: solid 1px #c3c3c3;
+  border-radius: 10px;
+  display: none;
+}
+
+#chatInput {
+  display:block;
+  margin: 0 auto;
+  margin-top: 10px;
+  background-color:white;
+  padding: 13px;
+  width: 230px;
+  font-size: 16px;
+  outline:none;
+}
+
+#send {
+  width: 70px;
+  height:30px;
+  background-color: #4F5FC9;
+  border-radius: 10px;
+  border:0px;
+  color: white;
+  font-size: 100%;
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: 5px;
+  outline:none;
+}
+
+#send:hover {
+  background-color:rgb(19, 38, 163);
+}
+
+ul {
+  font-size: 16px;
+  list-style-type: none;
+  transform: rotate(180deg);
+}
+  
+.chat-output {
+  text-align: left;
+  padding: 10px;
+  font-family: Helvetica, Arial, sans-serif;
+  width: 200px;
+  margin: 10px -5px;
+  background: #6975ff;
+  padding: 10px;
+  border-radius: 9px;
+  color: #fff;
+  position:relative;
+  display:none;
+  transform: rotate(-180deg);
+}
+
+.chat-input {
+  text-align: right;
+  padding: 10px;
+  font-family: Helvetica, Arial, sans-serif;
+  width: 200px;
+  margin: 10px -30px;
+  background: #3442ed;
+  padding: 10px;
+  border-radius: 9px;
+  color: #fff;
+  position:relative;
+  display:none;
+  transform: rotate(-180deg);
+}
+  
+.chat-input:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 5px solid #3442ed;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #3442ed;
+  border-bottom: 5px solid transparent;
+  right: -10px;
+  top: 6px;
+}
+  
+.chat-output:before {
+  content: "";
+  width: 0px;
+  height: 0px;
+  position: absolute;
+  border-left: 5px solid transparent;
+  border-right: 5px solid #6975ff;
+  border-top: 5px solid #6975ff;
+  border-bottom: 5px solid transparent;
+  left: -9px;
+  top: 6px;
 }
