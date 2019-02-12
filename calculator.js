@@ -236,8 +236,8 @@ $(document).ready(function() {
     }
   });
   //story_9: use the keyboard instead of clicking on the buttons with the mouse.
-  var operatorArray = ["+", "-", "*", ".", " ", "=", "/"];
-  var operatorkeybordArray = [187, 189, 191, 190, 8, 13, 55];
+  var operatorArray = ["x", "+", "-", "*", ".", " ", "=", "/"];
+  var operatorkeybordArray = [88, 187, 189, 191, 190, 8, 13, 55];
   var keyboardInput = {};
 
   for (var i = 0; i < 10; i++) {
@@ -245,7 +245,7 @@ $(document).ready(function() {
     keyboardInput['event' + i] = i + 48;
   }
 
-  for (var i = 10; i < 16; i++) {
+  for (var i = 10; i < 17; i++) {
     keyboardInput['button' + i] = operatorArray[i - 10];
     keyboardInput['event' + i] = operatorkeybordArray[i - 10];
   }
@@ -255,7 +255,7 @@ $(document).ready(function() {
   function Keyboard(event) {
     var char = event.which || event.keyCode;
     console.log("char=" + char);
-    for (var i = 0; i < 17; i++) {
+    for (var i = 0; i < 18; i++) {
 
       //console.log(keyboardInput['event' + i]);
       if (char == keyboardInput['event' + i]) {
@@ -405,4 +405,41 @@ $(document).ready(function() {
     };
     $(this).data('started', !started);
   });
+});
+
+//story_15:
+function draw() {
+  try {
+    // compile the expression once
+    const expression = document.getElementById('input').value;
+    console.log("expression:" + expression);
+    const expr = math.compile(expression);
+
+    // evaluate the expression repeatedly for different values of x
+    const xValues = math.range(-10, 10, 0.5).toArray()
+    const yValues = xValues.map(function(x) {
+      return expr.eval({
+        x: x
+      })
+    })
+
+    // render the plot using plotly
+    const trace1 = {
+      x: xValues,
+      y: yValues,
+      type: 'scatter'
+    }
+    const data = [trace1]
+    Plotly.newPlot('plot', data)
+  } catch (err) {
+    console.error(err)
+    alert(err)
+  }
+}
+
+$('#draw').click(function(event) {
+  console.log("click draw");
+  draw();
+  $("#plot").slideToggle("slow");
+
 });
