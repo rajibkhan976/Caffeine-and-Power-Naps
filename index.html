@@ -8,17 +8,19 @@
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/5.4.2/math.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script type="text/javascript" src="chat.js"></script>
 </head>
 
 <body>
   <h1>Calculator</h1>
   <div class="container">
     <div class="history">
-      <button type="button" id="clickhistory" class="topbtn" name="button"><i class="material-icons">history</i></button>
-      <button type="button" id="clicktimer" class="topbtn" id="timer" name="button"><i class="material-icons">timer</i></button>
-      <input id="draw" class="topbtn" type="button" value="DR">
-      <!--input type="button" class="topbtn" value="h" onclick="" style="width:30px;height:30px;"-->
-      <!--input type="button" class="topbtn" value="t" style="width:30px;height:30px;"-->
+      <button type="button" id="clickhistory" class="topbtn-right" name="button"><i class="material-icons">history</i></button>
+      <button type="button" id="clicktimer" class="topbtn-right" name="button"><i class="material-icons">timer</i></button>
+      <button type="button" id="chat" class="topbtn-left " name="button"><i class="material-icons">chat_bubble_outline</i></button>
+      <input id="draw" class="topbtn-left " type="button" value="DR">
+
     </div>
     <div class="screen">
       <input type="text" id="input" name="input" value="" readonly placeholder="0">
@@ -79,12 +81,18 @@
     </div>
   </div>
   <div id="displayHistory" class="displayHistory">
-
+  </div>
+  <div id="chatDisplay" class="chatDisplay">
+    <div class="inputBoxButton">
+      <input type="text" id="chatInput">
+      <button id="send">Send</button>
+    </div>
+    <ul class="chatMessages"></ul>
   </div>
   <div id="plot"></div>
   <script src="https://unpkg.com/mathjs@5.4.2/dist/math.min.js"></script>
   <script src="https://cdn.plot.ly/plotly-1.35.2.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
   <script type="text/javascript" src="calculator.js"></script>
 </body>
 
